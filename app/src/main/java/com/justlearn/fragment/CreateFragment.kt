@@ -2,25 +2,23 @@ package com.justlearn.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
+import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
-import androidx.fragment.app.Fragment
 import com.justlearn.databinding.FragmentChatsBinding
-import com.justlearn.utils.DeviceUuidFactory
+import com.justlearn.databinding.FragmentCreateBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.net.HttpURLConnection
 
-class ChatsFragment : Fragment() {
+class CreateFragment : Fragment() {
 
-    private var _binding: FragmentChatsBinding? = null
+    private var _binding: FragmentCreateBinding? = null
     private val binding get() = _binding!!
     private lateinit var webView: WebView
 
@@ -35,7 +33,7 @@ class ChatsFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentChatsBinding.inflate(inflater, container, false)
+        _binding = FragmentCreateBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -49,7 +47,7 @@ class ChatsFragment : Fragment() {
                 settings.javaScriptEnabled = true
                 settings.cacheMode = android.webkit.WebSettings.LOAD_CACHE_ELSE_NETWORK
                 webViewClient = WebViewClient()
-                loadUrl("https://www.justlearn.com/chat/JARVIS")
+                loadUrl("https://www.justlearn.com/pay")
             }
             delay(1000)
             hideProgressBar()
@@ -77,7 +75,7 @@ class ChatsFragment : Fragment() {
 
 
     companion object {
-        private const val TAG = "CHAT FRAGMENT"
+        private const val TAG = "CREATE FRAGMENT"
         private const val KEY = "tacz0ivakq"
     }
 }

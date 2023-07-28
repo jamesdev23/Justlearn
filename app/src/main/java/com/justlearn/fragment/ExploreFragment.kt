@@ -27,7 +27,6 @@ class ExploreFragment : Fragment() {
 
     private var _binding: FragmentExploreBinding? = null
     private val binding get() = _binding!!
-
     private lateinit var webView: WebView
 
     override fun onCreateView(

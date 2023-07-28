@@ -5,93 +5,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragment.ExploreFragment"
-    android:orientation="vertical"
-    android:padding="10dp">
+    tools:context=".fragment.ChatsFragment"
+    android:orientation="vertical">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/chats"
-        android:textSize="26sp"
-        android:textStyle="bold"
+    <ProgressBar
+        android:id="@+id/progress_bar"
+        android:layout_width="80dp"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_gravity="center"
+        android:visibility="visible"
         />
-    
-    <RelativeLayout
+
+    <WebView
+        android:id="@+id/web_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp">
-        
-        <ImageView
-            android:id="@+id/ai_chat_profile_image"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:src="@drawable/avatar_placeholder"
-            android:background="@drawable/rounded_corner"
-            android:contentDescription="@string/ai_chat_profile_image" />
-        
-        <TextView
-            android:id="@+id/ai_chat_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lucy Smith"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_toEndOf="@id/ai_chat_profile_image"
-            android:layout_marginStart="10dp"
-            />
-
-        <TextView
-            android:id="@+id/ai_chat_message"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello! How can I help you tod..."
-            android:textSize="18sp"
-            android:layout_toEndOf="@id/ai_chat_profile_image"
-            android:layout_below="@id/ai_chat_name"
-            android:layout_marginStart="10dp"
-            />
-        
-    </RelativeLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp">
-
-        <ImageView
-            android:id="@+id/ai_chat_profile_image2"
-            android:layout_width="55dp"
-            android:layout_height="55dp"
-            android:src="@drawable/avatar_placeholder"
-            android:background="@drawable/rounded_corner"
-            android:contentDescription="@string/ai_chat_profile_image" />
-
-        <TextView
-            android:id="@+id/ai_chat_name2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Lucy Smith"
-            android:textSize="18sp"
-            android:textStyle="bold"
-            android:layout_toEndOf="@id/ai_chat_profile_image2"
-            android:layout_marginStart="10dp"
-            />
-
-        <TextView
-            android:id="@+id/ai_chat_message2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello! How can I help you tod..."
-            android:textSize="18sp"
-            android:layout_toEndOf="@id/ai_chat_profile_image2"
-            android:layout_below="@id/ai_chat_name2"
-            android:layout_marginStart="10dp"
-            />
-
-    </RelativeLayout>
+        android:layout_height="match_parent"/>
 
 
 

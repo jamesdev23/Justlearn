@@ -19,9 +19,9 @@
 
     <fragment
         android:id="@+id/fragment_create"
-        android:name="com.justlearn.fragment.CreateAvatarFragment"
+        android:name="com.justlearn.fragment.CreateFragment"
         android:label="Create"
-        tools:layout="@layout/fragment_create_avatar" />
+        tools:layout="@layout/fragment_create" />
 
     <fragment
         android:id="@+id/fragment_image"
