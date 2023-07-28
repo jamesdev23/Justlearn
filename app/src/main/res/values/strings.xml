@@ -50,4 +50,11 @@
     <string name="thumbs_up">THUMBS UP</string>
     <string name="hello_how_may_i_help_you_today">Hello! How may I help you today?</string>
     <string name="hi">Hi</string>
+    <string name="google">Google</string>
+    <string name="sign_up_with_email">Sign up with email</string>
+    <string name="already_have_an_account">Already have an account?</string>
+    <string name="continue_with_facebook">Continue with Facebook</string>
+    <string name="sign_up_to_continue">Sign up to continue</string>
+    <string name="sign_up_with_facebook">Sign up with Facebook</string>
+    <string name="sign_up_with_google">Sign up with Google</string>
 </resources>

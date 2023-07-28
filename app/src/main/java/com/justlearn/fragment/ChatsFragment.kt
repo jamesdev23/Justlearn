@@ -15,9 +15,7 @@ class ChatsFragment : Fragment() {
     private var _binding: FragmentChatsBinding? = null
     private val binding get() = _binding!!
 
-    private lateinit var deviceUuidFactory: DeviceUuidFactory
-    private var deviceId: String = ""
-    private var hasNoResult: Boolean = false
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <resources>
     <color name="seed">#2956C7</color>
     <color name="md_theme_light_primary">#2956C7</color>
@@ -62,9 +61,33 @@
     <color name="md_theme_dark_surfaceTint">#B4C4FF</color>
     <color name="md_theme_dark_outlineVariant">#45464F</color>
     <color name="md_theme_dark_scrim">#000000</color>
-
     <!-- other colors -->
     <color name="tab_color">#565656</color>
     <color name="black">#000000</color>
     <color name="white">#ffffff</color>
+    <!-- color from JL app -->
+    <color name="colorPrimary">#3061cc</color>
+    <color name="colorPrimaryDark">#2b59bd</color>
+    <color name="colorAccent">#4267B2</color>
+    <color name="colorBlue">#4267B2</color>
+    <color name="colorRed">#d95032</color>
+    <color name="colorRedClick">#d24d30</color>
+    <color name="colorFb">#4267b2</color>
+    <color name="colorFbClick">#3b5fa8</color>
+    <color name="colorWhite">#ffffff</color>
+    <color name="colorWhiteClick">#F5F5F5</color>
+    <color name="colorLoginEmail">#ffffff</color>
+    <color name="colorBorder">#dddddd</color>
+    <color name="colorText">#444444</color>
+    <integer-array name="gplus_colors">
+        <item>@color/gplus_color_1</item>
+        <item>@color/gplus_color_2</item>
+        <item>@color/gplus_color_3</item>
+        <item>@color/gplus_color_4</item>
+    </integer-array>
+
+    <color name="gplus_color_1">#289AD5</color>
+    <color name="gplus_color_2">#5998E7</color>
+    <color name="gplus_color_3">#A8C4F7</color>
+    <color name="gplus_color_4">#00BCD4</color>
 </resources>
