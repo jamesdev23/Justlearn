@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Justlearn</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="tab_menu">Tab Menu</string>
     <string name="explore">Explore</string>
@@ -57,4 +56,8 @@
     <string name="sign_up_to_continue">Sign up to continue</string>
     <string name="sign_up_with_facebook">Sign up with Facebook</string>
     <string name="sign_up_with_google">Sign up with Google</string>
+
+    <!-- strings required for facebook login -->
+    <string name="facebook_app_id">603839641922414</string>
+    <string name="facebook_client_token">ae99c6091947d61d9ab46c022ff24a72</string>
 </resources>
