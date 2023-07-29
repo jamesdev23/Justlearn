@@ -94,7 +94,7 @@
                 android:layout_marginStart="-20dp"
                 android:fontFamily="@font/helvetica_normal"
                 android:gravity="center"
-                android:text="@string/sign_up_with_facebook"
+                android:text="@string/continue_with_facebook"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
@@ -123,86 +123,86 @@
                 android:layout_marginStart="-20dp"
                 android:fontFamily="@font/helvetica_normal"
                 android:gravity="center"
-                android:text="@string/sign_up_with_google"
+                android:text="@string/continue_with_google"
                 android:textColor="@android:color/white"
                 android:textSize="16sp"
                 android:textStyle="bold" />
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/email_signup_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:background="@drawable/bg_white_all_side_four_dp"
-            android:padding="20dp"
-            android:layout_below="@id/google_button">
+<!--        <LinearLayout-->
+<!--            android:id="@+id/email_signup_button"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_marginTop="10dp"-->
+<!--            android:background="@drawable/bg_white_all_side_four_dp"-->
+<!--            android:padding="20dp"-->
+<!--            android:layout_below="@id/google_button">-->
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/ic_email_icon"
-                android:gravity="start" />
+<!--            <ImageView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:src="@drawable/ic_email_icon"-->
+<!--                android:gravity="start" />-->
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="-20dp"
-                android:fontFamily="@font/helvetica_normal"
-                android:gravity="center"
-                android:text="@string/sign_up_with_email"
-                android:textColor="@color/colorText"
-                android:textSize="16sp"
-                android:textStyle="bold"  />
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="center_vertical"-->
+<!--                android:layout_marginStart="-20dp"-->
+<!--                android:fontFamily="@font/helvetica_normal"-->
+<!--                android:gravity="center"-->
+<!--                android:text="@string/sign_up_with_email"-->
+<!--                android:textColor="@color/colorText"-->
+<!--                android:textSize="16sp"-->
+<!--                android:textStyle="bold"  />-->
 
-        </LinearLayout>
+<!--        </LinearLayout>-->
 
 
 
     </RelativeLayout>
 
-    <com.google.android.material.divider.MaterialDivider
-        android:id="@+id/divider"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:dividerThickness="1dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="20dp"
-        android:layout_below="@id/center_container"
-        />
+<!--    <com.google.android.material.divider.MaterialDivider-->
+<!--        android:id="@+id/divider"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        app:dividerThickness="1dp"-->
+<!--        android:layout_marginTop="20dp"-->
+<!--        android:layout_marginBottom="20dp"-->
+<!--        android:layout_below="@id/center_container"-->
+<!--        />-->
 
 
-    <LinearLayout
-        android:id="@+id/login_container"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_below="@id/divider"
-        android:layout_centerHorizontal="true">
+<!--    <LinearLayout-->
+<!--        android:id="@+id/login_container"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:orientation="horizontal"-->
+<!--        android:layout_below="@id/divider"-->
+<!--        android:layout_centerHorizontal="true">-->
 
-        <TextView
-            android:id="@+id/AlreadyAccount"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:text="@string/already_have_an_account"
-            android:textSize="14sp" />
+<!--        <TextView-->
+<!--            android:id="@+id/AlreadyAccount"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textAlignment="center"-->
+<!--            android:text="@string/already_have_an_account"-->
+<!--            android:textSize="14sp" />-->
 
-        <TextView
-            android:id="@+id/login_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAlignment="center"
-            android:fontFamily="@font/helvetica_normal"
-            android:text="@string/login"
-            android:textColor="@drawable/bg_btn"
-            android:textSize="14sp"
-            android:textStyle="bold"
-            android:layout_marginStart="5dp"/>
+<!--        <TextView-->
+<!--            android:id="@+id/login_button"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:textAlignment="center"-->
+<!--            android:fontFamily="@font/helvetica_normal"-->
+<!--            android:text="@string/login"-->
+<!--            android:textColor="@drawable/bg_btn"-->
+<!--            android:textSize="14sp"-->
+<!--            android:textStyle="bold"-->
+<!--            android:layout_marginStart="5dp"/>-->
 
-    </LinearLayout>
+<!--    </LinearLayout>-->
 
 
 

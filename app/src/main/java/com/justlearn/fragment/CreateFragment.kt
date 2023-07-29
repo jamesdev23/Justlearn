@@ -21,6 +21,7 @@ class CreateFragment : Fragment() {
     private var _binding: FragmentCreateBinding? = null
     private val binding get() = _binding!!
     private lateinit var webView: WebView
+    private var siteUrl = ""
 
 
 
@@ -41,15 +42,17 @@ class CreateFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        siteUrl = "https://www.justlearn.com/tutors"
+
         CoroutineScope(Dispatchers.Main).launch {
             showProgressBar()
             binding.webView.apply {
                 settings.javaScriptEnabled = true
                 settings.cacheMode = android.webkit.WebSettings.LOAD_CACHE_ELSE_NETWORK
                 webViewClient = WebViewClient()
-                loadUrl("https://www.justlearn.com/pay")
+                loadUrl(siteUrl)
             }
-            delay(1000)
+            delay(1500)
             hideProgressBar()
         }
     }

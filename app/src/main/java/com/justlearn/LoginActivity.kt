@@ -1,22 +1,15 @@
 package com.justlearn
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.ActivityResultLauncher
-import androidx.activity.result.contract.ActivityResultContracts
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
-import com.facebook.login.widget.LoginButton
-import com.facebook.share.Share
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -46,7 +39,7 @@ class LoginActivity : AppCompatActivity() {
         callbackManager = CallbackManager.Factory.create()
 
         gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken(getString(R.string.google_server_client_id))
+//            .requestIdToken(getString(R.string.google_server_client_id))
             .requestEmail()
             .build()
 
@@ -64,18 +57,6 @@ class LoginActivity : AppCompatActivity() {
             startActivityForResult(signInIntent, RC_SIGN_IN)
         }
 
-        binding.emailSignupButton.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
-        binding.loginButton.setOnClickListener {
-            val intent = Intent(this, MainActivity::class.java)
-            startActivity(intent)
-            finish()
-        }
-
     }
 
     private fun performFacebookLogin() {
@@ -87,7 +68,7 @@ class LoginActivity : AppCompatActivity() {
 
             override fun onSuccess(result: LoginResult) {
                 Log.d(TAG, "Facebook token: ${result.accessToken.token}, ${result.accessToken.userId}, ${result.accessToken.applicationId}, ${result.accessToken.source}, ${result.accessToken.expires}")
-                toast("Facebook token: ${result.accessToken.token}, ${result.accessToken.userId}, ${result.accessToken.applicationId}, ${result.accessToken.source}, ${result.accessToken.expires}")
+
 
                 val userId = result.accessToken?.userId ?: ""
                 val accessToken = result.accessToken?.token ?: ""
@@ -111,7 +92,7 @@ class LoginActivity : AppCompatActivity() {
 
             override fun onError(error: FacebookException) {
                 Log.d(TAG, "FB Error: ${error.message}")
-                toast("Login Error")
+                toast("FB Login Error")
             }
         })
     }
@@ -125,10 +106,7 @@ class LoginActivity : AppCompatActivity() {
                 val task = GoogleSignIn.getSignedInAccountFromIntent(data)
                 handleSignInResult(task)
             } catch (e: ApiException) {
-                // The ApiException status code indicates the detailed failure reason.
-                // Please refer to the GoogleSignInStatusCodes class reference for more information.
-
-                toast("Error")
+                toast("Google Login Error")
                 Log.w(TAG, "signInResult:failed code=" + e.statusCode)
             }
         }
@@ -142,7 +120,6 @@ class LoginActivity : AppCompatActivity() {
         try {
             val account = completedTask.getResult(ApiException::class.java)
             val email = account?.email
-            // You can also get the ID token, which can be used to authenticate the user on your backend server.
             val idToken = account?.idToken
 
             Log.d(TAG, "Google token: ${account?.idToken}, ${account?.email}, ${account?.displayName}, ${account?.id}, ${account?.photoUrl}, ${account.serverAuthCode}, ${account.grantedScopes}, ${account.requestedScopes}")
@@ -159,9 +136,8 @@ class LoginActivity : AppCompatActivity() {
             toast("Login Success")
 
         } catch (e: ApiException) {
-            // Handle sign-in failure (e.g., user cancelled the sign-in process, etc.)
             Log.d(TAG, "signInResult:failed code=" + e.statusCode)
-            toast("Login Error")
+            toast("Google Login Error")
         }
     }
 

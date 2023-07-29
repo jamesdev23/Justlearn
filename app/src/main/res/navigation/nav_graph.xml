@@ -24,10 +24,10 @@
         tools:layout="@layout/fragment_create" />
 
     <fragment
-        android:id="@+id/fragment_image"
-        android:name="com.justlearn.fragment.ImageFragment"
+        android:id="@+id/fragment_settings"
+        android:name="com.justlearn.fragment.SettingsFragment"
         android:label="Image"
-        tools:layout="@layout/fragment_image" />
+        tools:layout="@layout/fragment_settings" />
 
 
 

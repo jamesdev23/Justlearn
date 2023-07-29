@@ -66,4 +66,6 @@
     <string name="browse_ai_chatbots">Browse AI Chatbots</string>
     <string name="chat_with_ai_chatbots">Chat with AI Chatbots</string>
     <string name="logout">Logout</string>
+    <string name="continue_with_google">Continue with Google</string>
+    <string name="settings">Settings</string>
 </resources>

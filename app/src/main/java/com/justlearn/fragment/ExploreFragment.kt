@@ -2,32 +2,30 @@ package com.justlearn.fragment
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.android.material.tabs.TabLayout
-import com.justlearn.R
 import com.justlearn.databinding.FragmentExploreBinding
-import com.justlearn.utils.DeviceUuidFactory
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Delay
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import java.net.HttpURLConnection
+import java.net.URLEncoder
 
 class ExploreFragment : Fragment() {
 
     private var _binding: FragmentExploreBinding? = null
     private val binding get() = _binding!!
     private lateinit var webView: WebView
+    private var siteUrl = ""
+    private var newUrl = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,15 +39,13 @@ class ExploreFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        siteUrl = "https://justlearn.com/"
+
         CoroutineScope(Dispatchers.Main).launch {
             showProgressBar()
-            binding.webView.apply {
-                settings.javaScriptEnabled = true
-                settings.cacheMode = android.webkit.WebSettings.LOAD_CACHE_ELSE_NETWORK
-                webViewClient = WebViewClient()
-                loadUrl("https://justlearn.com")
-            }
-            delay(1000)
+            setupWebView()
+            binding.webView.loadUrl(siteUrl)
+            delay(1500)
             hideProgressBar()
         }
 
@@ -59,12 +55,45 @@ class ExploreFragment : Fragment() {
             }
 
             override fun onQueryTextSubmit(query: String?): Boolean {
-//                searchAvatarList(query!!)
+                loadUrl(query!!)
                 return false
             }
 
         })
 
+    }
+
+    @SuppressLint("SetJavaScriptEnabled")
+    private fun setupWebView() {
+        binding.webView.apply {
+            settings.javaScriptEnabled = true
+            settings.cacheMode = android.webkit.WebSettings.LOAD_CACHE_ELSE_NETWORK
+            webViewClient = object : WebViewClient() {
+                override fun onReceivedError(
+                    view: WebView?,
+                    request: WebResourceRequest?,
+                    error: android.webkit.WebResourceError?
+                ) {
+                    super.onReceivedError(view, request, error)
+                    loadFallbackUrl()
+                }
+            }
+        }
+    }
+
+    private fun loadUrl(url: String) {
+        val encodedUrl = url.replace(" ", "-").lowercase()
+
+        newUrl = "$siteUrl$encodedUrl"
+        binding.webView.loadUrl(newUrl)
+        toast("Loading...")
+        newUrl = ""
+
+    }
+
+    private fun loadFallbackUrl() {
+        val fallbackUrl = siteUrl
+        loadUrl(fallbackUrl)
     }
 
     private fun showProgressBar() {
