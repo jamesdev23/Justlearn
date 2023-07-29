@@ -43,7 +43,7 @@
             android:id="@+id/sign_up_benefits1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Browse AI Chatbots"
+            android:text="@string/browse_ai_chatbots"
             android:textSize="18sp"
             android:fontFamily="@font/helvetica_regular"
             android:layout_centerHorizontal="true"
@@ -55,7 +55,7 @@
             android:id="@+id/sign_up_benefits2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Chat with AI Chatbots"
+            android:text="@string/chat_with_ai_chatbots"
             android:textSize="18sp"
             android:fontFamily="@font/helvetica_regular"
             android:layout_centerHorizontal="true"
@@ -158,16 +158,6 @@
                 android:textStyle="bold"  />
 
         </LinearLayout>
-
-        <com.facebook.login.widget.LoginButton
-            android:id="@+id/fblogin_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:layout_below="@id/email_signup_button"
-            android:layout_centerHorizontal="true"
-            />
 
 
 

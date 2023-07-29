@@ -1,61 +1,67 @@
 package com.justlearn
 
+import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import com.facebook.CallbackManager
 import com.facebook.FacebookCallback
 import com.facebook.FacebookException
+import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
+import com.facebook.login.widget.LoginButton
+import com.facebook.share.Share
+import com.google.android.gms.auth.api.signin.GoogleSignIn
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions
+import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.tasks.Task
 import com.justlearn.databinding.ActivityLoginBinding
+import com.justlearn.utils.SharedPreferencesManager
 
 class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var callbackManager: CallbackManager
+    private lateinit var gso: GoogleSignInOptions
+    private var isLoggedIn: Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        // Initialize the CallbackManager
-        callbackManager = CallbackManager.Factory.create()
-
-        // Set up Facebook Login Button
-
-        binding.fbloginButton.registerCallback(callbackManager, object :
-            FacebookCallback<LoginResult> {
-            override fun onSuccess(result: LoginResult) {
-                // Handle success
-                Log.d(TAG, "Facebook token: ${result?.accessToken?.token}, ${result?.accessToken?.userId}, ${result?.accessToken?.applicationId}, ${result?.accessToken?.source}")
-                toast("Facebook token: ${result?.accessToken?.token}, ${result?.accessToken?.userId}, ${result?.accessToken?.applicationId}, ${result?.accessToken?.source}")
-            }
-
-            override fun onCancel() {
-                // Handle cancel
-                Log.d(TAG, "Facebook onCancel")
-                toast("Facebook onCancel")
-            }
-
-            override fun onError(error: FacebookException) {
-                Log.d(TAG, "Facebook onError: ${error.message}")
-                toast("Facebook onError")
-            }
-
-        })
-
-//        binding.facebookButton.setOnClickListener {
-//            val intent = Intent(this, MainActivity::class.java)
-//            startActivity(intent)
-//            finish()
-//        }
-
-        binding.googleButton.setOnClickListener {
+        isLoggedIn = SharedPreferencesManager.isLoggedIn(this)
+        if (isLoggedIn) {
             val intent = Intent(this, MainActivity::class.java)
             startActivity(intent)
             finish()
+        }
+
+        callbackManager = CallbackManager.Factory.create()
+
+        gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken(getString(R.string.google_server_client_id))
+            .requestEmail()
+            .build()
+
+        val mGoogleSignInClient = GoogleSignIn.getClient(this, gso)
+
+
+
+        binding.facebookButton.setOnClickListener {
+            performFacebookLogin()
+        }
+
+
+        binding.googleButton.setOnClickListener {
+            val signInIntent = mGoogleSignInClient.signInIntent
+            startActivityForResult(signInIntent, RC_SIGN_IN)
         }
 
         binding.emailSignupButton.setOnClickListener {
@@ -72,10 +78,91 @@ class LoginActivity : AppCompatActivity() {
 
     }
 
+    private fun performFacebookLogin() {
+        LoginManager.getInstance().logInWithReadPermissions(
+            this, listOf("public_profile"))
+
+        LoginManager.getInstance().registerCallback(callbackManager, object
+            : FacebookCallback<LoginResult> {
+
+            override fun onSuccess(result: LoginResult) {
+                Log.d(TAG, "Facebook token: ${result.accessToken.token}, ${result.accessToken.userId}, ${result.accessToken.applicationId}, ${result.accessToken.source}, ${result.accessToken.expires}")
+                toast("Facebook token: ${result.accessToken.token}, ${result.accessToken.userId}, ${result.accessToken.applicationId}, ${result.accessToken.source}, ${result.accessToken.expires}")
+
+                val userId = result.accessToken?.userId ?: ""
+                val accessToken = result.accessToken?.token ?: ""
+
+                SharedPreferencesManager.saveFacebookLoginInfo(
+                    applicationContext,
+                    userId ?: "",
+                    accessToken ?: ""
+                )
+
+                val intent = Intent(this@LoginActivity, MainActivity::class.java)
+                startActivity(intent)
+                finish()
+                toast("Login Success")
+            }
+
+            override fun onCancel() {
+                Log.d(TAG, "FB Cancel")
+                toast("Login Cancelled by User")
+            }
+
+            override fun onError(error: FacebookException) {
+                Log.d(TAG, "FB Error: ${error.message}")
+                toast("Login Error")
+            }
+        })
+    }
+
     @Deprecated("Deprecated in Java")
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        callbackManager.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == RC_SIGN_IN) {
+            try {
+                val task = GoogleSignIn.getSignedInAccountFromIntent(data)
+                handleSignInResult(task)
+            } catch (e: ApiException) {
+                // The ApiException status code indicates the detailed failure reason.
+                // Please refer to the GoogleSignInStatusCodes class reference for more information.
+
+                toast("Error")
+                Log.w(TAG, "signInResult:failed code=" + e.statusCode)
+            }
+        }
+
+        if (requestCode == FB_SIGN_IN) {
+            callbackManager.onActivityResult(requestCode, resultCode, data)
+        }
+    }
+
+    private fun handleSignInResult(completedTask: Task<GoogleSignInAccount>) {
+        try {
+            val account = completedTask.getResult(ApiException::class.java)
+            val email = account?.email
+            // You can also get the ID token, which can be used to authenticate the user on your backend server.
+            val idToken = account?.idToken
+
+            Log.d(TAG, "Google token: ${account?.idToken}, ${account?.email}, ${account?.displayName}, ${account?.id}, ${account?.photoUrl}, ${account.serverAuthCode}, ${account.grantedScopes}, ${account.requestedScopes}")
+
+            SharedPreferencesManager.saveGoogleLoginInfo(
+                applicationContext,
+                email ?: "",
+                idToken ?: ""
+            )
+
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            startActivity(intent)
+            finish()
+            toast("Login Success")
+
+        } catch (e: ApiException) {
+            // Handle sign-in failure (e.g., user cancelled the sign-in process, etc.)
+            Log.d(TAG, "signInResult:failed code=" + e.statusCode)
+            toast("Login Error")
+        }
     }
 
     fun toast(message: String){
@@ -84,5 +171,7 @@ class LoginActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "LOGIN ACTIVITY"
+        private const val RC_SIGN_IN = 9001
+        private const val FB_SIGN_IN = 64206
     }
 }

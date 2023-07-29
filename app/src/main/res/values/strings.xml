@@ -60,4 +60,10 @@
     <!-- strings required for facebook login -->
     <string name="facebook_app_id">603839641922414</string>
     <string name="facebook_client_token">ae99c6091947d61d9ab46c022ff24a72</string>
+    <string name="google_server_client_id">582701295115-5h011c0o3ausejv2grccedsh29n1r0sj.apps.googleusercontent.com</string>
+
+
+    <string name="browse_ai_chatbots">Browse AI Chatbots</string>
+    <string name="chat_with_ai_chatbots">Chat with AI Chatbots</string>
+    <string name="logout">Logout</string>
 </resources>

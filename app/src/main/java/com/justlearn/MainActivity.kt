@@ -36,6 +36,9 @@ class MainActivity : AppCompatActivity() {
         return item.onNavDestinationSelected(navController) || super.onOptionsItemSelected(item)
     }
 
+    override fun onBackPressed() {
+        // super.onBackPressed()
+    }
     companion object {
         private const val TAG = "MAIN ACTIVITY"
     }
