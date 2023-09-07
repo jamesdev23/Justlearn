@@ -16,7 +16,7 @@ Welcome to the Justlearn Mobile App repository! This is the official mobile appl
 Follow these instructions to get the Justlearn app up and running on your mobile device:
 
 1. **Download and Install**: You can download the app from the following links:
-   - [Download for Android](https://github.com/jamesdev23/Justlearn/justlearn.apk)
+   - [Download for Android](https://github.com/jamesdev23/Justlearn/blob/master/justlearn.apk)
 
 2. **Sign In or Create an Account**: If you're a new user, create a Justlearn account. Existing users can sign in with their credentials.
 
