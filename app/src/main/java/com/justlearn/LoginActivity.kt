@@ -48,13 +48,23 @@ class LoginActivity : AppCompatActivity() {
 
 
         binding.facebookButton.setOnClickListener {
-            performFacebookLogin()
+//            performFacebookLogin()
+
+            toast("Login Auth Disabled. Loading main activity...")
+            val intent = Intent(applicationContext, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
 
         binding.googleButton.setOnClickListener {
-            val signInIntent = mGoogleSignInClient.signInIntent
-            startActivityForResult(signInIntent, RC_SIGN_IN)
+//            val signInIntent = mGoogleSignInClient.signInIntent
+//            startActivityForResult(signInIntent, RC_SIGN_IN)
+
+            toast("Login Auth Disabled. Loading main activity...")
+            val intent = Intent(applicationContext, MainActivity::class.java)
+            startActivity(intent)
+            finish()
         }
 
     }
